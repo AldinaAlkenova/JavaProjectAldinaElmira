@@ -64,4 +64,36 @@ public class FTERepository implements IFTERepository {
             e.printStackTrace();
         }
         return null;
-    }}
+    }
+    
+    @Override
+    public FullTimeEmployee getFTEByID(int id){
+        Connection connection=null;
+        try {
+            connection = postgreSQL.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement
+                    ("SELECT * FROM employee WHERE employeeid=?;");
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            FullTimeEmployee fullTimeEmployee=new FullTimeEmployee();
+
+            if (resultSet.next()){
+                fullTimeEmployee.setEmployeeID(resultSet.getInt("employeeid"));
+                fullTimeEmployee.setName(resultSet.getString("name"));
+                fullTimeEmployee.setSurname(resultSet.getString("surname"));
+                fullTimeEmployee.setAge(resultSet.getInt("age"));
+                fullTimeEmployee.setPosition(resultSet.getString("position"));
+                fullTimeEmployee.setDateOfAgreement(resultSet.getDate("dateofagreement").toLocalDate());
+                fullTimeEmployee.setExpireDate(resultSet.getDate("expiredate").toLocalDate());
+                fullTimeEmployee.setSalary(resultSet.getDouble("salary"));
+
+            }
+            String fullTimeEmployeeString = fullTimeEmployee.toString();
+            return fullTimeEmployee;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+}
