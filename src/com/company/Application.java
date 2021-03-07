@@ -104,7 +104,7 @@ public class Application {
     }
     private void updatePTEByIDMenu(){
         System.out.println("Type the ID of part time employee:");
-        int id = scanner.nextInt();
+        int id = scanner2.nextInt();
         System.out.println("Enter the name of the part time employee:");
         String addName = scanner2.next();
         System.out.println("Enter the surname of the part time employee:");
