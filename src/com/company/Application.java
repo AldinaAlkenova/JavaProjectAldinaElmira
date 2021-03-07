@@ -102,6 +102,22 @@ public class Application {
             updatePTEByIDMenu();
         }
     }
+    private void updateFTEByIDMenu(){
+        System.out.println("Type the ID of full time employee:");
+        int employeeid = scanner.nextInt();
+        System.out.println("Enter the name of the full time employee:");
+        String addName = scanner.next();
+        System.out.println("Enter the surname of the full time employee:");
+        String addSurname = scanner.next();
+        System.out.println("Enter the age of the full time employee:");
+        int addAge = scanner.nextInt();
+        System.out.println("Enter the position of the full time employee:");
+        String addPosition = scanner.next();
+        System.out.println("Enter the salary by the full time employee:");
+        Double addSalary = scanner.nextDouble();
+        System.out.println(fteController.updateFTEByID(employeeid, addName, addSurname, addAge, addPosition, addSalary));
+    }
+    
     private void updatePTEByIDMenu(){
         System.out.println("Type the ID of part time employee:");
         int id = scanner2.nextInt();
