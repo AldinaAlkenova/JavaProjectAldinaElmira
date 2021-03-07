@@ -21,12 +21,13 @@ public class Application {
         scanner2 = new Scanner(System.in);
     }
 
-    public void start() {
+   public void start() {
         while (true) {
             System.out.println("Choose one option (1-4):");
             System.out.println("1. Add new employee;");
             System.out.println("2. Get all employees;");
             System.out.println("3. Get employee by id");
+            System.out.println("4. Get employee's payment by id");
             System.out.println("0. Exit");
 
             int choice = scanner.nextInt();
@@ -36,7 +37,7 @@ public class Application {
             } else if (choice==2){
                 getAllEmployeeMenu();
                 System.out.println("************");
-                
+
             } else if (choice==3){
                 getEmployeeByIDMenu();
                 System.out.println("************");
@@ -44,6 +45,9 @@ public class Application {
             else if (choice==0) {
                 System.out.println("Have a nice day!\n************");
                 return;
+            } else if (choice==4) {
+                calculatePaymentMenu();
+                System.out.println("************");
             }
             else {
                 System.out.println("You have to enter one number from the list");
@@ -145,5 +149,25 @@ public class Application {
         System.out.println("Write the ID of part time employee");
         int id = scanner.nextInt();
         System.out.println(pteController.getPTEByID(id));
+    }
+    public void calculatePaymentMenu(){
+        System.out.println("Choose the type of employee: 1) Full Time Employee; 2) Part Time Employee.");
+        int choice=scanner.nextInt();
+        if (choice==1){
+            getPaymentFTEByIDMenu();
+        }
+        else if (choice==2){
+            getPaymentPTEByIDMenu();
+        }
+        }
+    private void getPaymentPTEByIDMenu(){
+        System.out.println("Write the ID of part time employee");
+        int id = scanner.nextInt();
+        System.out.println(pteController.getPaymentPTEByID(id));
+    }
+    private void getPaymentFTEByIDMenu(){
+        System.out.println("Write the ID of full time employee");
+        int id = scanner2.nextInt();
+        System.out.println(fteController.getPaymentFTEByID(id));
     }
 }
