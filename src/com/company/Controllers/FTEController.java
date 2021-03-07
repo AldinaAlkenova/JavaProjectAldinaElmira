@@ -15,10 +15,10 @@ public class FTEController {
     public FTEController(IFTERepository fteRepository) {
         this.fteRepository = fteRepository;
     }
-    public String addFullTimeEmployee (int employeeID, String name, String surname, int age, String position){
+   public String addFullTimeEmployee (int employeeID, String name, String surname, int age, String position, double salary){
         LocalDate dateOfAgreement=LocalDate.now();
         LocalDate expireDate= LocalDate.now().plusYears(1);
-        FullTimeEmployee addFullTimeEmployee=new FullTimeEmployee(employeeID, name, surname, age, position, dateOfAgreement, expireDate);
+        FullTimeEmployee addFullTimeEmployee=new FullTimeEmployee(employeeID, name, surname, age, position, dateOfAgreement, expireDate, salary);
         boolean isAdded= fteRepository.addFullTimeEmployee(addFullTimeEmployee);
         if (isAdded=true){
             return "Completed!";
