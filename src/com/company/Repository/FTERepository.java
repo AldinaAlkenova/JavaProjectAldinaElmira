@@ -14,12 +14,12 @@ public class FTERepository implements IFTERepository {
     public FTERepository (IDB postgreSQL){
         this.postgreSQL=postgreSQL;
     }
-    @Override
+   @Override
     public boolean addFullTimeEmployee(FullTimeEmployee fullTimeEmployee) {
         Connection connection = null;
         try{
             connection =postgreSQL.getConnection();
-            String sql = "INSERT INTO employee (employeeID, name, surname, age, position, dateofagreement, expiredate) VALUES (?, ?, ?, ?, ?, ?, ?); INSERT INTO fulltimeemployee (employeeID) VALUES (?); ";
+            String sql = "INSERT INTO employee (employeeID, name, surname, age, position, dateofagreement, expiredate) VALUES (?, ?, ?, ?, ?, ?, ?); INSERT INTO fulltimeemployee (employeeID, salary) VALUES (?, ?); ";
             PreparedStatement st = connection.prepareStatement (sql);
             st.setInt(1, FullTimeEmployee.getEmployeeID());
             st.setString(2, FullTimeEmployee.getName());
@@ -29,6 +29,7 @@ public class FTERepository implements IFTERepository {
             st.setDate(6, Date.valueOf(FullTimeEmployee.getDateOfAgreement()));
             st.setDate(7, Date.valueOf(FullTimeEmployee.getExpireDate()));
             st.setInt(8, FullTimeEmployee.getEmployeeID());
+            st.setDouble(9, FullTimeEmployee.getSalary());
             st.execute();
             return true;
         }
@@ -53,7 +54,8 @@ public class FTERepository implements IFTERepository {
                         resultSet.getInt("age"),
                         resultSet.getString("position"),
                         resultSet.getDate("dateofagreement").toLocalDate(),
-                        resultSet.getDate("expiredate").toLocalDate());
+                        resultSet.getDate("expiredate").toLocalDate(),
+                        resultSet.getDouble("salary"));
                 fulltimeemployees.add(fullTimeEmployee);
             }
             return fulltimeemployees;
@@ -62,5 +64,4 @@ public class FTERepository implements IFTERepository {
             e.printStackTrace();
         }
         return null;
-    }
-}
+    }}
