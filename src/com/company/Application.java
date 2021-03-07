@@ -26,9 +26,10 @@ public class Application {
             System.out.println("Choose one option (1-4):");
             System.out.println("1. Add new employee;");
             System.out.println("2. Get all employees;");
-            System.out.println("3. Get employee by id");
-            System.out.println("4. Get employee's payment by id");
-            System.out.println("0. Exit");
+            System.out.println("3. Get employee by id;");
+            System.out.println("4. Get employee's payment by id;");
+            System.out.println("5. Update information by id;");
+            System.out.println("0. Exit.");
 
             int choice = scanner.nextInt();
             if (choice == 1) {
@@ -47,6 +48,9 @@ public class Application {
                 return;
             } else if (choice==4) {
                 calculatePaymentMenu();
+                System.out.println("************");
+            } else if (choice==5) {
+                updateEmployeeByIDMenu();
                 System.out.println("************");
             }
             else {
@@ -87,6 +91,33 @@ public class Application {
         else if (choice2==2){
             getPTEByIDMenu();
         }
+    }
+    public void updateEmployeeByIDMenu(){
+        System.out.println("What type of employee do you want to update: 1)Full Time Employee; 2)Part Time Employee?");
+        int choice2 = scanner.nextInt();
+        if (choice2==1){
+            updateFTEByIDMenu();
+        }
+        else if (choice2==2){
+            updatePTEByIDMenu();
+        }
+    }
+    private void updatePTEByIDMenu(){
+        System.out.println("Type the ID of part time employee:");
+        int id = scanner.nextInt();
+        System.out.println("Enter the name of the part time employee:");
+        String addName = scanner2.next();
+        System.out.println("Enter the surname of the part time employee:");
+        String addSurname = scanner2.next();
+        System.out.println("Enter the age of the part time employee:");
+        int addAge = scanner2.nextInt();
+        System.out.println("Enter the position of the part time employee:");
+        String addPosition = scanner2.next();
+        System.out.println("Enter the hours worked by the part time employee:");
+        Double addHoursWorked = scanner2.nextDouble();
+        System.out.println("Enter the rate of the part time employee:");
+        Double addRate = scanner2.nextDouble();
+        System.out.println(pteController.updatePTEByID(id, addName, addSurname, addAge, addPosition, addHoursWorked, addRate));
     }
 
     public void addFullTimeEmployeeMenu(){
@@ -170,4 +201,5 @@ public class Application {
         int id = scanner2.nextInt();
         System.out.println(fteController.getPaymentFTEByID(id));
     }
+    
 }
