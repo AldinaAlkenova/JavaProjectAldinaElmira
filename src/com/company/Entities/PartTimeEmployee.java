@@ -14,7 +14,7 @@ public class PartTimeEmployee extends Employee{
     public PartTimeEmployee(){}
 
     @Override
-    public double calculateSalary() {
+    public double calculatePayment() {
         return hoursWorked*rate;
     }
 
