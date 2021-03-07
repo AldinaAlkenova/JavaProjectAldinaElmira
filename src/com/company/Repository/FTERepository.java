@@ -19,6 +19,9 @@ public class FTERepository implements IFTERepository {
         Connection connection = null;
         try{
             connection =postgreSQL.getConnection();
+            /*adding new full time employee by the SQL code 
+            INSERT INTO employee (employeeID, name, surname, age, position, dateofagreement, expiredate) VALUES (?, ?, ?, ?, ?, ?, ?); INSERT INTO fulltimeemployee (employeeID, salary) VALUES (?, ?);
+            */
             String sql = "INSERT INTO employee (employeeID, name, surname, age, position, dateofagreement, expiredate) VALUES (?, ?, ?, ?, ?, ?, ?); INSERT INTO fulltimeemployee (employeeID, salary) VALUES (?, ?); ";
             PreparedStatement st = connection.prepareStatement (sql);
             st.setInt(1, FullTimeEmployee.getEmployeeID());
@@ -45,6 +48,10 @@ public class FTERepository implements IFTERepository {
         try {
             connection = postgreSQL.getConnection();
             Statement preparedStatement = connection.createStatement();
+            /*
+            for getting all full time employees was used the SQL code
+            SELECT * FROM fulltimeemployee INNER JOIN employee ON employee.employeeid=fulltimeemployee.employeeid;
+            */
             ResultSet resultSet = preparedStatement.executeQuery("SELECT * FROM fulltimeemployee INNER JOIN employee ON employee.employeeid=fulltimeemployee.employeeid;");
             List<FullTimeEmployee> fulltimeemployees=new LinkedList<>();
             while (resultSet.next()){
@@ -71,6 +78,10 @@ public class FTERepository implements IFTERepository {
         Connection connection=null;
         try {
             connection = postgreSQL.getConnection();
+            /*
+            for getting full time employee by ID was used the SQL Code
+            SELECT * FROM employee WHERE employeeid=?;
+            */
             PreparedStatement preparedStatement = connection.prepareStatement
                     ("SELECT * FROM employee WHERE employeeid=?;");
             preparedStatement.setInt(1, id);
@@ -101,6 +112,10 @@ public class FTERepository implements IFTERepository {
         Connection connection=null;
         try {
             connection = postgreSQL.getConnection();
+            /*
+            for getting payment of full time employees by id was used SQL code
+            SELECT salary*12 as Payment FROM fulltimeemployee WHERE employeeid=?
+            */
             PreparedStatement preparedStatement = connection.prepareStatement
                     ("SELECT salary*12 as Payment FROM fulltimeemployee WHERE employeeid=?");
             preparedStatement.setInt(1, id);
