@@ -10,4 +10,5 @@ public interface IFTERepository {
     public List<FullTimeEmployee> getAllFullTimeEmployees();//for getting list of all full time employees 
     public String getFTEByID(int id);//searching full time employee by ID
     public double getPaymentFTEByID(int id);//getting payment of full time employee by ID
+    public boolean updateFTEByID(int id, String name, String surname, int age, String position, Double salary);//updating information
 }
