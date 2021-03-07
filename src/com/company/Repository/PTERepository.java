@@ -46,16 +46,16 @@ public class PTERepository implements IPTERepository {
     }
 
     @Override
-    public List<PartTimeEmployee> getAllPartTimeEmployees() {
+    public List<PartTimeEmployee> getAllPartTimeEmployees(){
         Connection connection=null;
         try {
             connection = postgreSQL.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement
-                    ("SELECT * FROM parttimeemployee");
+                    ("SELECT * FROM parttimeemployee INNER JOIN employee ON employee.employeeid=parttimeemployee.employeeid;");
             ResultSet resultSet = preparedStatement.executeQuery();
             List<PartTimeEmployee> parttimeemployee=new LinkedList<>();
             while (resultSet.next()){
-                PartTimeEmployee partTimeEmployee=new PartTimeEmployee (resultSet.getInt("id"),
+                PartTimeEmployee partTimeEmployee=new PartTimeEmployee (resultSet.getInt("employeeid"),
                         resultSet.getString("name"),
                         resultSet.getString("surname"),
                         resultSet.getInt("age"),
