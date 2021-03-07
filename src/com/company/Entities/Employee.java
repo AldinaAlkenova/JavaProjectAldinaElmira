@@ -23,7 +23,7 @@ public abstract class Employee { //Abstract class Employee that has fields such 
         this.dateOfAgreement=dateOfAgreement;
         this.expireDate=expireDate;
     }
-    public abstract double calculatePayment (); //abstract method "calculatePayment" that will calculate total salary
+    public abstract Double calculatePayment (); //abstract method "calculatePayment" that will calculate total salary
     public static int getAge() { //getter for "age"
         return age;
     }
