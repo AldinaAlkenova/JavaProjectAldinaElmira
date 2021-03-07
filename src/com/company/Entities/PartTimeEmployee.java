@@ -2,7 +2,7 @@ package com.company.Entities;
 
 import java.time.LocalDate;
 
-public class PartTimeEmployee extends Employee{
+public class PartTimeEmployee extends Employee{ //class "PartTimeEmployee" that extends from abstract class Employee
     private static Double hoursWorked;
     private static Double rate;
 
@@ -14,25 +14,25 @@ public class PartTimeEmployee extends Employee{
     public PartTimeEmployee(){}
 
     @Override
-    public double calculatePayment() {
+    public double calculatePayment() { //method "calculatePayment" that returns payment by the formula "hoursWorked*rate" 
         return hoursWorked*rate;
     }
 
     ;
 
-    public void setHoursWorked(Double hoursWorked) {
+    public void setHoursWorked(Double hoursWorked) { //setters for hoursWorked
         this.hoursWorked = hoursWorked;
     }
 
-    public void setRate(Double rate) {
+    public void setRate(Double rate) { //setters for rate
         this.rate = rate;
     }
 
-    public static double getHoursWorked() {
+    public static double getHoursWorked() { //getters for hoursWorked
         return hoursWorked;
     }
 
-    public static double getRate() {
+    public static double getRate() { //getters for rate
         return rate;
     }
 
