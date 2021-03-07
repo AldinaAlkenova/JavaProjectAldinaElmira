@@ -9,4 +9,5 @@ public interface IFTERepository {
     public boolean addFullTimeEmployee(FullTimeEmployee fullTimeEmployee);
     public List<FullTimeEmployee> getAllFullTimeEmployees();
     public FullTimeEmployee getFTEByID(int id);
+    public double getPaymentFTEByID(int id);
 }
