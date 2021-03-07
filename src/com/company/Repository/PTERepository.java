@@ -137,7 +137,7 @@ public class PTERepository implements IPTERepository {
         return 0;
     }
     @Override
-    public boolean updatePTEByID(int id, String name, String surname, int age, String position, double hoursWorked, double rate) {
+    public boolean updatePTEByID(int id, String name, String surname, int age, String position, Double hoursWorked, Double rate) {
         Connection connection = null;
         try {
             connection = postgreSQL.getConnection();
