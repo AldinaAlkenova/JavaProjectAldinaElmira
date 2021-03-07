@@ -3,14 +3,14 @@ package com.company.Entities;
 import java.time.LocalDate;
 
 public class FullTimeEmployee extends Employee{//class "FullTimeEmployee" that extends from abstract class "Employee"
-    private static double salary; //field salary with data type double
-    public FullTimeEmployee(int employeeID, String name, String surname, int age, String position, LocalDate dateofagreement, LocalDate expiredate, double salary) {
+    private static Double salary; //field salary with data type double
+    public FullTimeEmployee(int employeeID, String name, String surname, int age, String position, LocalDate dateofagreement, LocalDate expiredate, Double salary) {
         super(employeeID, name, surname, age, position, dateofagreement, expiredate);
         this.salary=salary;
     }
 
     @Override
-    public double calculatePayment() { //method "calculatePayment" that returns total salary in the year
+    public Double calculatePayment() { //method "calculatePayment" that returns total salary in the year
         return 12*salary;
     }
 
