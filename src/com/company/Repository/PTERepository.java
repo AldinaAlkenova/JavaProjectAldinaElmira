@@ -82,18 +82,13 @@ public class PTERepository implements IPTERepository {
         return null;
     }
     
-    @Override
-    public PartTimeEmployee getPTEByID(int id){
+     @Override
+    public String getPTEByID(int id){
         Connection connection=null;
         try {
             connection = postgreSQL.getConnection();
-            /*
-            for getting part time employee by id was used SQL code
-            SELECT * FROM employee WHERE employeeid=?
-            
-            */
             PreparedStatement preparedStatement = connection.prepareStatement
-                    ("SELECT * FROM employee WHERE employeeid=?");
+                    ("SELECT * FROM parttimeemployee INNER JOIN employee on employee.employeeid=parttimeemployee.employeeid WHERE employee.employeeid=?;");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             PartTimeEmployee partTimeEmployee=new PartTimeEmployee();
@@ -106,9 +101,14 @@ public class PTERepository implements IPTERepository {
                 partTimeEmployee.setPosition(resultSet.getString("position"));
                 partTimeEmployee.setDateOfAgreement(resultSet.getDate("dateofagreement").toLocalDate());
                 partTimeEmployee.setExpireDate(resultSet.getDate("expiredate").toLocalDate());
+                partTimeEmployee.setHoursWorked(resultSet.getDouble("hoursworked"));
+                partTimeEmployee.setRate(resultSet.getDouble("rate"));
+                String fullTimeEmployeeString = partTimeEmployee.toString();
+                return partTimeEmployee.toString();
             }
-            String fullTimeEmployeeString = partTimeEmployee.toString();
-            return partTimeEmployee;
+            else {
+                return "This ID was not found among part time employees!";
+            }
         }
         catch (Exception e){
             e.printStackTrace();
@@ -135,5 +135,35 @@ public class PTERepository implements IPTERepository {
             e.printStackTrace();
         }
         return 0;
+    }
+    @Override
+    public boolean updatePTEByID(int id, String name, String surname, int age, String position, double hoursWorked, double rate) {
+        Connection connection = null;
+        try {
+            connection = postgreSQL.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement
+                    ("SELECT * FROM parttimeemployee WHERE employeeid=?;");
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                PreparedStatement preparedStatement2 = connection.prepareStatement("UPDATE employee SET name=?, surname=?, age=?, position=?  WHERE employeeid=?; UPDATE parttimeemployee SET hoursworked=?, rate=? WHERE employeeid=?;");
+                preparedStatement2.setString(1, name);
+                preparedStatement2.setString(2, surname);
+                preparedStatement2.setInt(3, age);
+                preparedStatement2.setString(4, position);
+                preparedStatement2.setInt(5, id);
+                preparedStatement2.setDouble(6, hoursWorked);
+                preparedStatement2.setDouble(7, rate);
+                preparedStatement2.setInt(8, id);
+                preparedStatement2.execute();
+                return true;
+            } else {
+                return false;
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
