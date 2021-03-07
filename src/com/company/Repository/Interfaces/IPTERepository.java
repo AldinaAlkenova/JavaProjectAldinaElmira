@@ -9,4 +9,5 @@ public interface IPTERepository {
     public boolean addPartTimeEmployee(PartTimeEmployee partTimeEmployee);
     public List<PartTimeEmployee> getAllPartTimeEmployees();
     public PartTimeEmployee getPTEByID(int id);
+    public double getPaymentPTEByID(int id);
 }
