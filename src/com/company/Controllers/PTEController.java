@@ -28,7 +28,7 @@ public class PTEController {
     }
 
     public String getPTEByID(int id){
-        String result=pteRepository.getPTEByID(id).toString();
+        String result=pteRepository.getPTEByID(id);
         return result;
     }
     public String getPaymentPTEByID(int id){
@@ -39,4 +39,11 @@ public class PTEController {
         else {
             return "The Employee ID was not found among Part Time Employees. Please, make sure you have entered correct information.";
         }}
+    public String updatePTEByID(int id, String name, String surname, int age, String position, double hoursWorked, double rate){
+        Boolean isUpdated=pteRepository.updatePTEByID(id, name, surname, age, position, hoursWorked, rate);
+        if (isUpdated=true){
+            return "Completed!";
+        }
+        else return "Failed, try again!";
+    }
 }
