@@ -14,7 +14,7 @@ public class FTEController {
     }
 
     public String addFullTimeEmployee (int employeeID, String name, String surname, int age,
-                                       String position, double salary){
+                                       String position, Double salary){
         LocalDate dateOfAgreement=LocalDate.now();
         LocalDate expireDate= LocalDate.now().plusYears(1);
         FullTimeEmployee addFullTimeEmployee=new FullTimeEmployee(employeeID, name, surname, age, position,
