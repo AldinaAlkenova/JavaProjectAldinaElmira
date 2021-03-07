@@ -37,6 +37,9 @@ public class Application {
                 getAllEmployeeMenu();
                 System.out.println("************");
                 start();
+            } else if (choice==0) {
+                System.out.println("Have a nice day!\n************");
+                return;
             }
             else {
                 System.out.println("You have to enter one number from the list");
