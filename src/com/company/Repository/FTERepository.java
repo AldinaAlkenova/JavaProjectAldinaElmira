@@ -125,4 +125,35 @@ public class FTERepository implements IFTERepository {
         }
         return 0;
     }
+    @Override
+    public boolean updateFTEByID(int id, String name, String surname, int age, String position, Double salary) {
+    Connection connection = null;
+        try {
+            connection = postgreSQL.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement
+                    ("SELECT * FROM fulltimeemployee WHERE employeeid=?;");
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                PreparedStatement preparedStatement2 = connection.prepareStatement
+            ("UPDATE employee SET name=?, surname=?, age=?, position=?  WHERE employeeid=?;" +
+                    " UPDATE fulltimeemployee SET salary=? WHERE employeeid=?;");
+                preparedStatement2.setString(1, name);
+                preparedStatement2.setString(2, surname);
+                preparedStatement2.setInt(3, age);
+                preparedStatement2.setString(4, position);
+                preparedStatement2.setInt(5, id);
+                preparedStatement2.setDouble(6, salary);
+                preparedStatement2.setInt(7, id);
+                preparedStatement2.execute();
+                return true;
+            } else {
+                return false;
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
