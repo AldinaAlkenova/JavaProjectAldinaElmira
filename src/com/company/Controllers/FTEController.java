@@ -35,4 +35,12 @@ public class FTEController {
         String result=fteRepository.getFTEByID(id).toString();
         return result;
     }
+    public String getPaymentFTEByID(int id){
+        Double result=fteRepository.getPaymentFTEByID(id);
+        if (result>0) {
+            return result.toString();
+        }
+        else {
+            return "The Employee ID was not found among Full Time Employees. Please, make sure you have entered correct information.";
+        }}
 }
