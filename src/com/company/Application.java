@@ -26,18 +26,22 @@ public class Application {
             System.out.println("Choose one option (1-4):");
             System.out.println("1. Add new employee;");
             System.out.println("2. Get all employees;");
+            System.out.println("3. Get employee by id");
             System.out.println("0. Exit");
 
             int choice = scanner.nextInt();
             if (choice == 1) {
                 addEmployeeMenu();
                 System.out.println("************");
-                start();
             } else if (choice==2){
                 getAllEmployeeMenu();
                 System.out.println("************");
-                start();
-            } else if (choice==0) {
+                
+            } else if (choice==3){
+                getEmployeeByIDMenu();
+                System.out.println("************");
+            }
+            else if (choice==0) {
                 System.out.println("Have a nice day!\n************");
                 return;
             }
@@ -67,6 +71,17 @@ public class Application {
         }
         else if (choice2==2){
             getAllPartTimeEmployeesMenu();
+        }
+    }
+    
+    public void getEmployeeByIDMenu(){
+        System.out.println("What type of employee do you want to get: 1)Full Time Employee; 2)Part Time Employee?");
+        int choice2 = scanner.nextInt();
+        if (choice2==1){
+            getFTEByIDMenu();
+        }
+        else if (choice2==2){
+            getPTEByIDMenu();
         }
     }
 
@@ -119,5 +134,16 @@ public class Application {
         for (PartTimeEmployee parttimeemployee : parttimeemployees) {
             System.out.println(parttimeemployee.toString());
         }
+    }
+     private void getFTEByIDMenu(){
+        System.out.println("Write the ID of full time employee");
+        int id = scanner.nextInt();
+        System.out.println(fteController.getFTEByID(id));
+    }
+
+    private void getPTEByIDMenu(){
+        System.out.println("Write the ID of part time employee");
+        int id = scanner.nextInt();
+        System.out.println(pteController.getPTEByID(id));
     }
 }
