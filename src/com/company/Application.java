@@ -81,7 +81,9 @@ public class Application {
         int addAge = scanner.nextInt();
         System.out.println("Enter the position of the full time employee that you want to add:");
         String addPosition = scanner.next();
-        String result = fteController.addFullTimeEmployee(addID, addName, addSurname, addAge, addPosition);
+        System.out.println("Enter the salary of the full time employee that you want to add:");
+        Double addSalary = scanner.nextDouble();
+        String result = fteController.addFullTimeEmployee(addID, addName, addSurname, addAge, addPosition, addSalary);
         System.out.println(result);
     }
 
