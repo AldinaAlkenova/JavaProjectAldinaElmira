@@ -6,8 +6,8 @@ import com.company.Entities.FullTimeEmployee;
 import java.util.List;
 
 public interface IFTERepository {
-    public boolean addFullTimeEmployee(FullTimeEmployee fullTimeEmployee);
-    public List<FullTimeEmployee> getAllFullTimeEmployees();
-    public FullTimeEmployee getFTEByID(int id);
-    public double getPaymentFTEByID(int id);
+    public boolean addFullTimeEmployee(FullTimeEmployee fullTimeEmployee);//for adding new employee for full time
+    public List<FullTimeEmployee> getAllFullTimeEmployees();//for getting list of all full time employees 
+    public FullTimeEmployee getFTEByID(int id);//searching full time employee by ID
+    public double getPaymentFTEByID(int id);//getting payment of full time employee by ID
 }
