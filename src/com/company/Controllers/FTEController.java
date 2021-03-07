@@ -42,5 +42,14 @@ public class FTEController {
         }
         else {
             return "The Employee ID was not found among Full Time Employees. Please, make sure you have entered correct information.";
-        }}
+        }
+    }
+    
+    public String updateFTEByID(int id, String name, String surname, int age, String position, Double salary){
+        Boolean isUpdated=fteRepository.updateFTEByID(id, name, surname, age, position, salary);
+        if (isUpdated=true){
+            return "Completed!";
+        }
+        else return "Failed, try again!";
+    }
 }
