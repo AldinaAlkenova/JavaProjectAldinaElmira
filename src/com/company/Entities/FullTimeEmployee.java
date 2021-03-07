@@ -2,25 +2,25 @@ package com.company.Entities;
 
 import java.time.LocalDate;
 
-public class FullTimeEmployee extends Employee{
-    private static double salary;
+public class FullTimeEmployee extends Employee{//class "FullTimeEmployee" that extends from abstract class "Employee"
+    private static double salary; //field salary with data type double
     public FullTimeEmployee(int employeeID, String name, String surname, int age, String position, LocalDate dateofagreement, LocalDate expiredate, double salary) {
         super(employeeID, name, surname, age, position, dateofagreement, expiredate);
         this.salary=salary;
     }
 
     @Override
-    public double calculatePayment() {
+    public double calculatePayment() { //method "calculatePayment" that returns total salary in the year
         return 12*salary;
     }
 
     public FullTimeEmployee(){};
 
-    public static Double getSalary() {
+    public static Double getSalary() { //getter for "salary"
         return salary;
     }
 
-    public static void setSalary(Double salary) {
+    public static void setSalary(Double salary) { //setter for "salary"
         FullTimeEmployee.salary = salary;
     }
 
