@@ -1,9 +1,7 @@
-package com.company.Controllers;
+package com.company.controllers;
 
-import com.company.Entities.FullTimeEmployee;
 import com.company.Entities.PartTimeEmployee;
-import com.company.Repository.Interfaces.IFTERepository;
-import com.company.Repository.Interfaces.IPTERepository;
+import com.company.repositories.interfaces.IPTERepository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -23,8 +21,14 @@ public class PTEController {
         }
         else return "Failed";
     }
+
     public List<PartTimeEmployee> getAllPartTimeEmployees() {
         List<PartTimeEmployee> parttimeemployee = pteRepository.getAllPartTimeEmployees();
         return parttimeemployee;
+    }
+
+    public String getPTEByID(int id){
+        String result=pteRepository.getPTEByID(id).toString();
+        return result;
     }
 }
