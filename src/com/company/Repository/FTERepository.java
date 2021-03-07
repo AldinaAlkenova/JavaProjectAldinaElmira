@@ -72,7 +72,7 @@ public class FTERepository implements IFTERepository {
         }
         return null;
     }
-    
+    //Connecting SQL Statement used to find Full Time Employee by ID to the Classes
     @Override
     public String getFTEByID(int id){
         Connection connection=null;
@@ -103,7 +103,7 @@ public class FTERepository implements IFTERepository {
         }
         return null;
     }
-
+//Connecting SQL Statement used to calculate the payment per year of the Full Time Employee by ID to the Classes
     @Override
     public double getPaymentFTEByID(int id) {
         Connection connection=null;
@@ -125,6 +125,7 @@ public class FTERepository implements IFTERepository {
         }
         return 0;
     }
+    //Connecting SQL Statement used to update the information about Full Time Employee by ID to the Classes
     @Override
     public boolean updateFTEByID(int id, String name, String surname, int age, String position, Double salary) {
     Connection connection = null;
