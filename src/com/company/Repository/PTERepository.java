@@ -73,4 +73,33 @@ public class PTERepository implements IPTERepository {
         }
         return null;
     }
+    
+    @Override
+    public PartTimeEmployee getPTEByID(int id){
+        Connection connection=null;
+        try {
+            connection = postgreSQL.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement
+                    ("SELECT * FROM employee WHERE employeeid=?");
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            PartTimeEmployee partTimeEmployee=new PartTimeEmployee();
+
+            if (resultSet.next()){
+                partTimeEmployee.setEmployeeID(resultSet.getInt("employeeid"));
+                partTimeEmployee.setName(resultSet.getString("name"));
+                partTimeEmployee.setSurname(resultSet.getString("surname"));
+                partTimeEmployee.setAge(resultSet.getInt("age"));
+                partTimeEmployee.setPosition(resultSet.getString("position"));
+                partTimeEmployee.setDateOfAgreement(resultSet.getDate("dateofagreement").toLocalDate());
+                partTimeEmployee.setExpireDate(resultSet.getDate("expiredate").toLocalDate());
+            }
+            String fullTimeEmployeeString = partTimeEmployee.toString();
+            return partTimeEmployee;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
