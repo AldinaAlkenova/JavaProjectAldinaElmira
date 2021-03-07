@@ -10,5 +10,5 @@ public interface IPTERepository {
     public List<PartTimeEmployee> getAllPartTimeEmployees(); //getting list of all part time employee
     public String getPTEByID(int id);
     public double getPaymentPTEByID(int id);
-    public boolean updatePTEByID(int id, String name, String surname, int age, String position, double hoursWorked, double rate);
+    public boolean updatePTEByID(int id, String name, String surname, int age, String position, Double hoursWorked, Double rate);
 }
