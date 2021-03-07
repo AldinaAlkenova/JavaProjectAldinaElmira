@@ -39,6 +39,6 @@ public class PartTimeEmployee extends Employee{
     @Override
     public String toString()
     {
-        return "Freelancer employee ID: " + super.getEmployeeID() + " name: " + super.getName() + " surname: " + super.getSurname() + " age: " + super.getAge() +  " position: " + getPosition();
+        return "Part time employee: " +  " employee ID: " + super.getEmployeeID() + " , name: " + super.getName() + " , surname: " + super.getSurname() + " ,age: " + super.getAge() +  " ,position: " + getPosition();
     }
 }
