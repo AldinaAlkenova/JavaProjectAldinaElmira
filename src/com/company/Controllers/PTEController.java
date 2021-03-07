@@ -31,4 +31,12 @@ public class PTEController {
         String result=pteRepository.getPTEByID(id).toString();
         return result;
     }
+    public String getPaymentPTEByID(int id){
+        Double result=pteRepository.getPaymentPTEByID(id);
+        if (result>0){
+        return result.toString();
+    }
+        else {
+            return "The Employee ID was not found among Part Time Employees. Please, make sure you have entered correct information.";
+        }}
 }
