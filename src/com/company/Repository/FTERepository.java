@@ -74,16 +74,12 @@ public class FTERepository implements IFTERepository {
     }
     
     @Override
-    public FullTimeEmployee getFTEByID(int id){
+    public String getFTEByID(int id){
         Connection connection=null;
         try {
             connection = postgreSQL.getConnection();
-            /*
-            for getting full time employee by ID was used the SQL Code
-            SELECT * FROM employee WHERE employeeid=?;
-            */
             PreparedStatement preparedStatement = connection.prepareStatement
-                    ("SELECT * FROM employee WHERE employeeid=?;");
+                    ("SELECT * FROM fulltimeemployee INNER JOIN employee on employee.employeeid=fulltimeemployee.employeeid WHERE employee.employeeid=?;");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             FullTimeEmployee fullTimeEmployee=new FullTimeEmployee();
@@ -97,25 +93,22 @@ public class FTERepository implements IFTERepository {
                 fullTimeEmployee.setDateOfAgreement(resultSet.getDate("dateofagreement").toLocalDate());
                 fullTimeEmployee.setExpireDate(resultSet.getDate("expiredate").toLocalDate());
                 fullTimeEmployee.setSalary(resultSet.getDouble("salary"));
-
+                String fullTimeEmployeeString = fullTimeEmployee.toString();
+                return fullTimeEmployee.toString();
             }
-            String fullTimeEmployeeString = fullTimeEmployee.toString();
-            return fullTimeEmployee;
+            else {return "This ID was not found among full time employers!";}
         }
         catch (Exception e){
             e.printStackTrace();
         }
         return null;
     }
+
     @Override
     public double getPaymentFTEByID(int id) {
         Connection connection=null;
         try {
             connection = postgreSQL.getConnection();
-            /*
-            for getting payment of full time employees by id was used SQL code
-            SELECT salary*12 as Payment FROM fulltimeemployee WHERE employeeid=?
-            */
             PreparedStatement preparedStatement = connection.prepareStatement
                     ("SELECT salary*12 as Payment FROM fulltimeemployee WHERE employeeid=?");
             preparedStatement.setInt(1, id);
