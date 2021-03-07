@@ -20,6 +20,6 @@ public class FullTimeEmployee extends Employee{
     @Override
     public String toString()
     {
-        return "Full time employee ID: " + super.getEmployeeID()+ " name: " + super.getName() + " surname: " + super.getSurname() + " age: " + super.getAge() + " position: " + getPosition();
+        return "Full time employee ID: " + super.getEmployeeID()+ "; name: " + super.getName() + "; surname: " + super.getSurname() + "; age: " + super.getAge() + "; position: " + getPosition();
     }
 }
