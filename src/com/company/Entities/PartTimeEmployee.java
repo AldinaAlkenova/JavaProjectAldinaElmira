@@ -14,7 +14,7 @@ public class PartTimeEmployee extends Employee{ //class "PartTimeEmployee" that 
     public PartTimeEmployee(){}
 
     @Override
-    public double calculatePayment() { //method "calculatePayment" that returns payment by the formula "hoursWorked*rate" 
+    public Double calculatePayment() { //method "calculatePayment" that returns payment by the formula "hoursWorked*rate" 
         return hoursWorked*rate;
     }
 
@@ -28,11 +28,11 @@ public class PartTimeEmployee extends Employee{ //class "PartTimeEmployee" that 
         this.rate = rate;
     }
 
-    public static double getHoursWorked() { //getters for hoursWorked
+    public static Double getHoursWorked() { //getters for hoursWorked
         return hoursWorked;
     }
 
-    public static double getRate() { //getters for rate
+    public static Double getRate() { //getters for rate
         return rate;
     }
 
