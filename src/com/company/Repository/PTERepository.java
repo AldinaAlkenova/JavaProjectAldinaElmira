@@ -81,7 +81,7 @@ public class PTERepository implements IPTERepository {
         }
         return null;
     }
-    
+    //Connecting SQL Statement used to find the Part Time Employee by ID to the Classes
      @Override
     public String getPTEByID(int id){
         Connection connection=null;
@@ -115,6 +115,7 @@ public class PTERepository implements IPTERepository {
         }
         return null;
     }
+    //Connecting SQL Statement used to calculate the payment of the Part Time Employee by ID to the Classes
     @Override
     public double getPaymentPTEByID(int id) {
         Connection connection=null;
@@ -136,6 +137,8 @@ public class PTERepository implements IPTERepository {
         }
         return 0;
     }
+    
+    //Connecting SQL Statement used to update the information of the Part Time Employee by ID to the Classes
     @Override
     public boolean updatePTEByID(int id, String name, String surname, int age, String position, Double hoursWorked, Double rate) {
         Connection connection = null;
