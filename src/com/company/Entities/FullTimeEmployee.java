@@ -3,15 +3,15 @@ package com.company.Entities;
 import java.time.LocalDate;
 
 public class FullTimeEmployee extends Employee{
-    public FullTimeEmployee(int employeeID, String name, String surname, int age, String position, LocalDate dateofagreement, LocalDate expiredate) {
+    private double salary;
+    public FullTimeEmployee(int employeeID, String name, String surname, int age, String position, LocalDate dateofagreement, LocalDate expiredate, double salary) {
         super(employeeID, name, surname, age, position, dateofagreement, expiredate);
+        this.salary=salary;
     }
 
     @Override
-    public double calculateSalary() {
-        LocalDate expiredate=getExpireDate();
-        LocalDate dateofagreement=getDateOfAgreement();
-        return 0;
+    public double calculatePayment() {
+        return salary*12;
     }
 
     public FullTimeEmployee(){};
