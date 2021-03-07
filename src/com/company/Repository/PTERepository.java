@@ -23,6 +23,10 @@ public class PTERepository implements IPTERepository {
         Connection connection = null;
         try{
             connection =postgreSQL.getConnection();
+            /*
+            for adding new employee for part time was used SQL code 
+            INSERT INTO employee (employeeID, name, surname, age, position, dateofagreement, expiredate) VALUES (?, ?, ?, ?, ?, ?, ?); INSERT INTO parttimeemployee (employeeID, hoursworked, rate) VALUES (?, ?, ?);
+            */
             String sql = "INSERT INTO employee (employeeID, name, surname, age, position, dateofagreement, expiredate) VALUES (?, ?, ?, ?, ?, ?, ?); INSERT INTO parttimeemployee (employeeID, hoursworked, rate) VALUES (?, ?, ?); ";
             PreparedStatement st = connection.prepareStatement (sql);
             st.setInt(1, PartTimeEmployee.getEmployeeID());
@@ -50,6 +54,10 @@ public class PTERepository implements IPTERepository {
         Connection connection=null;
         try {
             connection = postgreSQL.getConnection();
+            /*
+            for getting list all of part time employees was used SQL code 
+            SELECT * FROM parttimeemployee INNER JOIN employee ON employee.employeeid=parttimeemployee.employeeid;
+            */
             PreparedStatement preparedStatement = connection.prepareStatement
                     ("SELECT * FROM parttimeemployee INNER JOIN employee ON employee.employeeid=parttimeemployee.employeeid;");
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -79,6 +87,11 @@ public class PTERepository implements IPTERepository {
         Connection connection=null;
         try {
             connection = postgreSQL.getConnection();
+            /*
+            for getting part time employee by id was used SQL code
+            SELECT * FROM employee WHERE employeeid=?
+            
+            */
             PreparedStatement preparedStatement = connection.prepareStatement
                     ("SELECT * FROM employee WHERE employeeid=?");
             preparedStatement.setInt(1, id);
