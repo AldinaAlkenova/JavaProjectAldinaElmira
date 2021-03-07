@@ -32,7 +32,7 @@ public class FTEController {
     }
 
     public String getFTEByID(int id){
-        String result=fteRepository.getFTEByID(id).toString();
+        String result=fteRepository.getFTEByID(id);
         return result;
     }
     public String getPaymentFTEByID(int id){
