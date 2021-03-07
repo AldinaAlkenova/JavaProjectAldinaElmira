@@ -1,5 +1,5 @@
 package com.company;
-
+//Imported libraries
 import com.company.Entities.FullTimeEmployee;
 import com.company.Entities.PartTimeEmployee;
 import com.company.Controllers.FTEController;
@@ -21,7 +21,7 @@ public class Application {
         scanner2 = new Scanner(System.in);
     }
 
-   public void start() {
+   public void start() {//Main Menu
         while (true) {
             System.out.println("Choose one option (1-4):");
             System.out.println("1. Add new employee;");
