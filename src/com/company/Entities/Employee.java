@@ -23,7 +23,7 @@ public abstract class Employee {
         this.dateOfAgreement=dateOfAgreement;
         this.expireDate=expireDate;
     }
-    public abstract double calculateSalary ();
+    public abstract double calculatePayment ();
     public static int getAge() {
         return age;
     }
