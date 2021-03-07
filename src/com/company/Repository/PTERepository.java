@@ -102,4 +102,25 @@ public class PTERepository implements IPTERepository {
         }
         return null;
     }
+    @Override
+    public double getPaymentPTEByID(int id) {
+        Connection connection=null;
+        try {
+            connection = postgreSQL.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement
+                    ("SELECT rate*hoursworked as Payment FROM parttimeemployee WHERE employeeid=?");
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            double payment=0;
+
+            if (resultSet.next()){
+                payment=resultSet.getDouble(("Payment"));
+            }
+            return payment;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }
